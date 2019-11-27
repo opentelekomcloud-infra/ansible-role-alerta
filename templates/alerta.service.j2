@@ -1,0 +1,33 @@
+[Unit]
+Description=Alerta Podman container
+Wants=syslog.service
+
+[Service]
+Type=simple
+Restart=always
+TimeoutSec=30s
+User=alerta
+Group=alerta
+Environment=ALERTA_IMAGE=alerta/alerta-web
+EnvironmentFile=/etc/alerta/env
+
+ExecStartPre=-/usr/bin/podman system migrate
+ExecStartPre=-/usr/bin/podman rm "alerta"
+ExecStartPre=-/usr/bin/podman pull ${ALERTA_IMAGE}
+
+ExecStart=/bin/sh -c "/usr/bin/podman run \
+  --name alerta \
+  --env-file /etc/alerta/env \
+  -p 8080:8080 \
+  -v /etc/alerta/alertad.conf:/etc/alertad.conf:ro,z \
+  --tmpfs /tmp:rw,size=787448k \
+  ${ALERTA_IMAGE}"
+
+ExecReload=-/usr/bin/podman stop -t 300 "alerta"
+ExecReload=-/usr/bin/podman rm "alerta"
+
+ExecStop=/usr/bin/podman stop -t 300 "alerta"
+ExecStop=/usr/bin/podman rm "alerta"
+
+[Install]
+WantedBy=multi-user.target

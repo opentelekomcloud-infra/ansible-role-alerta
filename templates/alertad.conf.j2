@@ -1,0 +1,21 @@
+ADMIN_USERS={{ alerta_admin_users }}
+DATABASE_URL='{{ alerta_database_url }}'
+AUTH_REQUIRED={{ alerta_auth_required }}
+{% if alerta_user_proxyfix is defined and alerta_user_proxyfix %}
+USE_PROXYFIX = True
+{% endif %}
+CUSTOMER_VIEWS = {{ alerta_enable_customer_views }}
+{% if alerta_allowed_email_domains is defined and alerta_allowed_email_domains|length %}
+ALLOWED_EMAIL_DOMAINS = {{ alerta_allowed_email_domains }}
+{% endif %}
+SECRET_KEY = '{{ alerta_secret_key }}'
+{% if alerta_auth_provider is defined %}
+AUTH_PROVIDER='{{ alerta_auth_provider }}'
+{% for key in alerta_auth_options %}
+{{ key }} = '{{alerta_auth_options[key] }}'
+{% endfor %}
+{% endif %}
+{% if alerta_smtp_enable is defined and alerta_smtp_enable %}
+SMTP_HOST = '{{ alerta_smtp_host }}'
+MAIL_FROM = '{{ alerta_smtp_from_address }}'
+{% endif %}

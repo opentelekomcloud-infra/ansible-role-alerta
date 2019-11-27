@@ -1,0 +1,11 @@
+---
+# handlers file for alerta
+
+- name: restart alerta
+  become: true
+  systemd:
+    name: "{{ alerta_systemd_service_name }}"
+    state: restarted
+    enabled: yes
+    daemon_reload: yes
+

@@ -1,0 +1,18 @@
+---
+# Firewalld enablement
+
+- name: Enable firewalld
+  become: true
+  systemd:
+    name: firewalld
+    enabled: yes
+    state: started
+
+- name: Enable Firewall port 8080
+  become: true
+  firewalld:
+    port: 8080/tcp
+    state: enabled
+    permanent: true
+    immediate: true
+

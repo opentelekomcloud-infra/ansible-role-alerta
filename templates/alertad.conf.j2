@@ -33,9 +33,9 @@ PLUGINS = {{ alerta_plugins }}
 {% if alerta_plugins_options is defined and alerta_plugins_options|length %}
 {% for key in alerta_plugins_options %}
 {% if length(alerta_plugins_options[key].split('\n')) > 0 %}
-{{ key }} = """{{{ alerta_plugins_options[key] }}"""
+{{ key }} = """{{ alerta_plugins_options[key] }}"""
 {% else %}
-{{ key }} = '{{{ alerta_plugins_options[key] }}'
+{{ key }} = '{{ alerta_plugins_options[key] }}'
 {% endif %}
 {% endfor %}
 {% endif %}

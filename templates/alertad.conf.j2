@@ -32,7 +32,7 @@ COLUMNS = {{ alerta_columns }}
 PLUGINS = {{ alerta_plugins }}
 {% if alerta_plugins_options is defined and alerta_plugins_options|length %}
 {% for key in alerta_plugins_options %}
-{% if alerta_plugins_options[key].split('\n')|length > 0 %}
+{% if alerta_plugins_options[key].split('\n')|length > 1 %}
 {{ key }} = """{{ alerta_plugins_options[key] }}"""
 {% else %}
 {{ key }} = '{{ alerta_plugins_options[key] }}'

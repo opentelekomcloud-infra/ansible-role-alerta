@@ -58,6 +58,8 @@
   loop:
     - {src: "env.j2", dest: "/etc/alerta/env"}
     - {src: "alertad.conf.j2", dest: "/etc/alerta/alertad.conf"}
+  notify:
+    - restart alerta
 
 - name: Write SSL Cert
   become: true

@@ -33,5 +33,6 @@ PLUGINS = {{ alerta_plugins }}
 {% if alerta_plugins_options is defined and alerta_plugins_options|length %}
 {% for key in alerta_plugins_options %}
 {{ key }} = '{{ alerta_plugins_options[key] }}'
+{% endfor %}
 {% endif %}
 {% endif %}

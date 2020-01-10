@@ -16,6 +16,7 @@ alerta_ssl_key_location: "/etc/ssl/certs/{{ alerta_ssl_key_name }}"
 alerta_ssl_key_content: ""
 
 alerta_admin_users: []
+alerta_admin_key: 'some_fake'
 alerta_auth_required: true
 alerta_auth_github_enable: false
 alerta_enable_customer_views: false

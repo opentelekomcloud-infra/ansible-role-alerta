@@ -28,6 +28,9 @@ ALLOWED_ENVIRONMENTS = {{ alerta_allowed_environments }}
 {% if alerta_columns %}
 COLUMNS = {{ alerta_columns }}
 {% endif %}
+{% if alerta_heartbeat_timeout is defined and alerta_heartbeat_timeout > 0 %}
+HEARTBEAT_TIMEOUT = {{ alerta_heartbeat_timeout|int }}
+{% endif %}
 {% if alerta_plugins is defined and alerta_plugins|length %}
 PLUGINS = {{ alerta_plugins }}
 {% if alerta_plugins_options is defined and alerta_plugins_options|length %}

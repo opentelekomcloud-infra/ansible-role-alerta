@@ -24,5 +24,6 @@ alerta_use_proxyfix: false
 alerta_smtp_from_address: "alerta@example.com"
 alerta_secret_key: "abcdefxgrwCsfvdgSRGg,d.fgS4$fgd"
 alerta_auth_options:
+alerta_heartbeat_timeout: 300
 
 packages: []

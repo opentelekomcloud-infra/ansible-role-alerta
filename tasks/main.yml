@@ -58,6 +58,7 @@
   loop:
     - {src: "env.j2", dest: "/etc/alerta/env"}
     - {src: "alertad.conf.j2", dest: "/etc/alerta/alertad.conf"}
+    - {src: "alerta.conf.j2", dest: "/etc/alerta/alerta.conf"}
   notify:
     - restart alerta
 

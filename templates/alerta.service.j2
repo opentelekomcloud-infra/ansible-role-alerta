@@ -20,6 +20,7 @@ ExecStart=/bin/sh -c "/usr/bin/podman run \
   --env-file /etc/alerta/env \
   -p 8080:8080 \
   -v /etc/alerta/alertad.conf:/etc/alertad.conf:ro,z \
+  -v /etc/alerta/alerta.conf:/app/alerta.conf:ro,z \
   --tmpfs /tmp:rw,size=787448k \
   ${ALERTA_IMAGE}"
 

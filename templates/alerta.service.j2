@@ -17,6 +17,11 @@ ExecStartPre=-/usr/bin/podman pull ${ALERTA_IMAGE}
 
 ExecStart=/bin/sh -c "/usr/bin/podman run \
   --name alerta \
+{% if alerta_auth_hosts_entries is defined and alerta_auth_provider == 'ldap' %}
+{% for item in alerta_auth_hosts_entries %}
+     --add-host={{ item }} \
+{% endfor %}
+{% endif %}
   --env-file /etc/alerta/env \
   -p 8080:8080 \
   -v /etc/alerta/alertad.conf:/etc/alertad.conf:ro,z \

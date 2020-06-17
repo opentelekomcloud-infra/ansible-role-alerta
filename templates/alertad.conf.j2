@@ -10,8 +10,11 @@ ALLOWED_EMAIL_DOMAINS = {{ alerta_allowed_email_domains }}
 SECRET_KEY = '{{ alerta_secret_key }}'
 {% if alerta_auth_provider is defined %}
 AUTH_PROVIDER='{{ alerta_auth_provider }}'
-{% for key in alerta_auth_options %}
-{{ key }} = '{{alerta_auth_options[key] }}'
+{% for key in alerta_auth_options_str %}
+{{ key }} = '{{alerta_auth_options_str[key] }}'
+{% endfor %}
+{% for key in alerta_auth_options_non_str %}
+{{ key }} = {{alerta_auth_options_non_str[key] }}
 {% endfor %}
 {% endif %}
 {% if alerta_allowed_github_orgs is defined and alerta_allowed_github_orgs|length %}

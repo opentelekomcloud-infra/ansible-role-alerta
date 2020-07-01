@@ -37,11 +37,7 @@ HEARTBEAT_TIMEOUT = {{ alerta_heartbeat_timeout|int }}
 PLUGINS = {{ alerta_plugins }}
 {% if alerta_plugins_options is defined and alerta_plugins_options|length %}
 {% for key in alerta_plugins_options %}
-{% if alerta_plugins_options[key].split('\n')|length > 1 %}
-{{ key }} = """{{ alerta_plugins_options[key] }}"""
-{% else %}
 {{ key }} = '{{ alerta_plugins_options[key] }}'
-{% endif %}
 {% endfor %}
 {% endif %}
 {% endif %}

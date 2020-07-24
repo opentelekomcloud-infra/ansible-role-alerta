@@ -16,3 +16,11 @@
     permanent: true
     immediate: true
 
+- name: Enable Firewall port 18088
+  become: true
+  firewalld:
+    port: 18088/tcp
+    state: enabled
+    permanent: true
+    immediate: true
+  when: alerta_enable_webaddon

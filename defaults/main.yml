@@ -4,7 +4,7 @@ alerta_systemd_service_name: "alerta.service"
 alerta_systemd_unit_path: "{{ '/etc/systemd/system/' + alerta_systemd_service_name }}"
 alerta_image_tag: "7.4.1"
 alerta_webaddon_systemd_service_name: "alerta-webaddon.service"
-alerta_webaddon_systemd_unit_path: "{{ '/etc/systemd/system/' + alerta-webaddon_systemd_service_name }}"
+alerta_webaddon_systemd_unit_path: "{{ '/etc/systemd/system/' + alerta_webaddon_systemd_service_name }}"
 alerta_enable_webaddon: false
 alerta_webaddon_image: otcinfra/alerta-webaddon
 alerta_webaddon_oauth_client_id: githubid

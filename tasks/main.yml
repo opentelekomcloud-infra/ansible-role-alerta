@@ -90,6 +90,25 @@
 
 - include_tasks: firewall.yml
 
+- name: Write Alerta webaddon Systemd unit file
+  become: true
+  template:
+    src: "alerta-webaddon.service.j2"
+    dest: "{{ alerta_webaddon_systemd_unit_path }}"
+  when: alerta_enable_webaddon
+  notify:
+    - restart alerta-webaddon
+
+- name: Write Alerta webaddon env file
+  become: true
+  template:
+    src: "env-webaddon.j2"
+    dest: "/etc/alerta/env-webaddon"
+    owner: "{{ alerta_os_user }}"
+    group: "{{ alerta_os_group }}"
+    mode: 0770
+  when: alerta_enable_webaddon
+
 - name: Write Alerta Systemd unit file
   become: true
   template:

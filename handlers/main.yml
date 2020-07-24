@@ -9,3 +9,10 @@
     enabled: yes
     daemon_reload: yes
 
+- name: restart alerta-webaddon
+  become: true
+  systemd:
+    name: "{{ alerta_webaddon_systemd_service_name }}"
+    state: restarted
+    enabled: yes
+    daemon_reload: yes

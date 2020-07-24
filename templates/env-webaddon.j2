@@ -1,0 +1,9 @@
+{% if alerta_webaddon_image is defined and alerta_webaddon_image|length %}
+ALERTA_WEBADDON_IMAGE={{ alerta_webaddon_image }}
+{% endif %}
+GITHUB_OAUTH_CLIENT_ID={{ alerta_webaddon_oauth_client_id }}
+GITHUB_OAUTH_CLIENT_SECRET={{ alerta_webaddon_oauth_client_secret }}
+GITHUB_OAUTH_ALLOWED_ORGANIZATIONS={{ alerta_webaddon_oauth_allowed_org }}
+APP_SECRET_KEY={{ alerta_webaddon_app_secret }}
+DATABASE_URL={{ alerta_database_url }}
+PROXY_PREFIX_PATH=/webaddon

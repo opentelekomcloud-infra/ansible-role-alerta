@@ -1,0 +1,31 @@
+[Unit]
+Description=Alerta webaddon container
+Wants=syslog.service
+
+[Service]
+Type=simple
+Restart=always
+TimeoutSec=30s
+User=alerta
+Group=alerta
+Environment=ALERTA_WEBADDON_IMAGE=otcinfra/alerta-webaddon
+EnvironmentFile=/etc/alerta/env-webaddon
+
+ExecStartPre=-/usr/bin/podman system migrate
+ExecStartPre=-/usr/bin/podman rm "alerta-webaddon"
+ExecStartPre=-/usr/bin/podman pull ${ALERTA_WEBADDON_IMAGE}
+
+ExecStart=/bin/sh -c "/usr/bin/podman run \
+  --name alerta-webaddon \
+  --env-file /etc/alerta/env-webaddon \
+  -p 18088:23456 \
+  ${ALERTA_WEBADDON_IMAGE}"
+
+ExecReload=-/usr/bin/podman stop -t 300 "alerta-webaddon"
+ExecReload=-/usr/bin/podman rm "alerta-webaddon"
+
+ExecStop=/usr/bin/podman stop -t 300 "alerta-webaddon"
+ExecStop=/usr/bin/podman rm "alerta-webaddon"
+
+[Install]
+WantedBy=multi-user.target
